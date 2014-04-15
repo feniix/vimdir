@@ -112,3 +112,6 @@ let g:vim_json_syntax_conceal=0
 
 " let g:syntastic_puppet_puppetlint_args='--no_class_inherits_from_params_class-check'
 
+let g:airline_powerline_fonts = 1
+set laststatus=2
+
