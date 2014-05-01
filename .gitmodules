@@ -58,3 +58,6 @@
 [submodule "bundle/specky"]
 	path = bundle/specky
 	url = https://github.com/vim-scripts/Specky.git
+[submodule "bundle/vim-git"]
+	path = bundle/vim-git
+	url = https://github.com/tpope/vim-git.git
