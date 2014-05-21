@@ -31,9 +31,6 @@
 [submodule "bundle/vim-json-bundle"]
 	path = bundle/vim-json-bundle
 	url = https://github.com/vim-scripts/vim-json-bundle.git
-[submodule "bundle/vimproc"]
-	path = bundle/vimproc
-	url = https://github.com/Shougo/vimproc.vim.git
 [submodule "bundle/vim-snipmate"]
 	path = bundle/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate.git
