@@ -53,6 +53,7 @@ autocmd FileType python set tags+=$HOME/.vim/tags/python.ctags
 " autocmd FileType python compiler pylint
 autocmd FileType json setlocal shiftwidth=2
 autocmd FileType json setlocal tabstop=2
+autocmd FileType ruby,eruby set filetype=ruby.eruby.chef
 
 " Save global variables, those whose names are all uppercase
 " Remember the marks used in the past 1000 edited files
