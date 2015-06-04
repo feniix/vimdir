@@ -67,3 +67,6 @@
 [submodule "bundle/vim-wakatime"]
 	path = bundle/vim-wakatime
 	url = https://github.com/wakatime/vim-wakatime.git
+[submodule "bundle/vim-terraform"]
+	path = bundle/vim-terraform
+	url = https://github.com/markcornick/vim-terraform.git
