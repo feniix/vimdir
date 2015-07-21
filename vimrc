@@ -122,6 +122,7 @@ autocmd BufNewFile,BufRead Packerfile set filetype=json
 autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
 
 " autocmd Syntax clojure EnableSyntaxExtension
+autocmd Syntax clojure EnableSyntaxExtension
 
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
