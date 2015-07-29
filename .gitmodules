@@ -97,3 +97,6 @@
 [submodule "bundle/vim-clojure-static"]
 	path = bundle/vim-clojure-static
 	url = https://github.com/guns/vim-clojure-static.git
+[submodule "bundle/logstash.vim"]
+	path = bundle/logstash.vim
+	url = https://github.com/robbles/logstash.vim.git
