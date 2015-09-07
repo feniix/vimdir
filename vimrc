@@ -128,3 +128,5 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 
+set clipboard+=unnamedplus
+
