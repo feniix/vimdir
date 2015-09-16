@@ -130,3 +130,6 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 
 set clipboard+=unnamedplus
 
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
