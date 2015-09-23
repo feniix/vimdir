@@ -100,3 +100,9 @@
 [submodule "bundle/logstash.vim"]
 	path = bundle/logstash.vim
 	url = https://github.com/robbles/logstash.vim.git
+[submodule "bundle/jedi-vim"]
+	path = bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = https://github.com/ervandew/supertab.git
