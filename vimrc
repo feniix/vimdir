@@ -128,8 +128,10 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
+
+set backspace=indent,eol,start
 
