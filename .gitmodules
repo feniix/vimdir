@@ -121,3 +121,6 @@
 [submodule "bundle/vim-erlang-tags"]
 	path = bundle/vim-erlang-tags
 	url = https://github.com/vim-erlang/vim-erlang-tags.git
+[submodule "bundle/vim-elixir"]
+	path = bundle/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
