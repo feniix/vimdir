@@ -109,3 +109,15 @@
 [submodule "bundle/tern_for_vim"]
 	path = bundle/tern_for_vim
 	url = https://github.com/marijnh/tern_for_vim.git
+[submodule "bundle/vim-erlang-runtime"]
+	path = bundle/vim-erlang-runtime
+	url = https://github.com/vim-erlang/vim-erlang-runtime
+[submodule "bundle/vim-erlang-compiler"]
+	path = bundle/vim-erlang-compiler
+	url = https://github.com/vim-erlang/vim-erlang-compiler.git
+[submodule "bundle/vim-erlang-omnicomplete"]
+	path = bundle/vim-erlang-omnicomplete
+	url = https://github.com/vim-erlang/vim-erlang-omnicomplete.git
+[submodule "bundle/vim-erlang-tags"]
+	path = bundle/vim-erlang-tags
+	url = https://github.com/vim-erlang/vim-erlang-tags.git
