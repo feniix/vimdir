@@ -73,30 +73,15 @@
 [submodule "bundle/vim-classpath"]
 	path = bundle/vim-classpath
 	url = https://github.com/tpope/vim-classpath.git
-[submodule "bundle/vim-fireplace"]
-	path = bundle/vim-fireplace
-	url = https://github.com/tpope/vim-fireplace.git
 [submodule "bundle/vim-salve"]
 	path = bundle/vim-salve
 	url = https://github.com/tpope/vim-salve.git
-[submodule "bundle/vim-sexp-mappings-for-regular-people"]
-	path = bundle/vim-sexp-mappings-for-regular-people
-	url = https://github.com/tpope/vim-sexp-mappings-for-regular-people.git
 [submodule "bundle/vim-repeat"]
 	path = bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "bundle/vim-sexp"]
-	path = bundle/vim-sexp
-	url = https://github.com/guns/vim-sexp.git
 [submodule "bundle/rainbow_parentheses"]
 	path = bundle/rainbow_parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim.git
-[submodule "bundle/vim-clojure-highlight"]
-	path = bundle/vim-clojure-highlight
-	url = https://github.com/guns/vim-clojure-highlight.git
-[submodule "bundle/vim-clojure-static"]
-	path = bundle/vim-clojure-static
-	url = https://github.com/guns/vim-clojure-static.git
 [submodule "bundle/logstash.vim"]
 	path = bundle/logstash.vim
 	url = https://github.com/robbles/logstash.vim.git
@@ -124,3 +109,6 @@
 [submodule "bundle/vim-elixir"]
 	path = bundle/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "bundle/gundo-vim"]
+	path = bundle/gundo-vim
+	url = http://github.com/sjl/gundo.vim.git

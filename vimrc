@@ -105,6 +105,8 @@ set nocompatible               " be iMproved
 filetype plugin indent on     " required!
 
 call pathogen#infect()
+call pathogen#helptags()
+
 let g:syntastic_python_checkers=['flake8']
 
 let g:solarized_termcolors=256
@@ -135,3 +137,4 @@ call matchadd('ColorColumn', '\%81v', 100)
 
 set backspace=indent,eol,start
 
+nnoremap <F5> :GundoToggle<CR>
