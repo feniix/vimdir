@@ -112,3 +112,6 @@
 [submodule "bundle/vim-better-whitespace"]
 	path = bundle/vim-better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace.git
+[submodule "bundle/vim-yaml"]
+	path = bundle/vim-yaml
+	url = https://github.com/stephpy/vim-yaml.git
