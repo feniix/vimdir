@@ -6,8 +6,6 @@ if has("syntax")
   syntax on
 endif
 
-set background=dark
-
 " Last edited line when reopening
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -25,7 +23,6 @@ set incsearch		" Incremental search
 set autowrite		" Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 set history=1000
-
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -50,8 +47,8 @@ set visualbell
 set ttyfast
 set laststatus=2
 
-autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
-autocmd FileType python set tags+=$HOME/.vim/tags/python.ctags
+" autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+" autocmd FileType python set tags+=$HOME/.vim/tags/python.ctags
 " autocmd FileType python compiler pylint
 autocmd FileType json setlocal shiftwidth=2
 autocmd FileType json setlocal tabstop=2
@@ -62,8 +59,6 @@ autocmd FileType json setlocal tabstop=2
 " Don’t highlight the last search when starting a new session
 " Store the file as ~/.vim/viminfo
 set viminfo=!,'1000,<1000,h,n~/.vim/viminfo
-
-" let g:pylint_onwrite = 0
 
 " Display invisible characters
 "
@@ -91,9 +86,6 @@ nmap <leader>q :nohlsearch<CR>
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
     set t_Co=256
 endif
-
-" filetype plugin on
-let g:pydiction_location = '$HOME/.vim/pydiction/complete-dict'
 
 filetype on
 filetype plugin on
@@ -124,8 +116,6 @@ autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
-
-" set clipboard+=unnamedplus
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
