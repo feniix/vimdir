@@ -2,17 +2,63 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
-if has("syntax")
-  syntax on
-endif
+" Required:
+set runtimepath^=~/.vim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle "MarcWeber/vim-addon-mw-utils"
+NeoBundle "Valloric/YouCompleteMe"
+NeoBundle "altercation/vim-colors-solarized"
+NeoBundle "bling/vim-airline"
+NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle "ekalinin/Dockerfile.vim"
+NeoBundle "elzr/vim-json"
+NeoBundle "ervandew/supertab"
+NeoBundle "fatih/vim-go"
+NeoBundle "kien/rainbow_parentheses.vim"
+NeoBundle "marijnh/tern_for_vim"
+NeoBundle "markcornick/vim-terraform"
+NeoBundle "mhinz/vim-signify"
+NeoBundle "ntpeters/vim-better-whitespace"
+NeoBundle "robbles/logstash.vim"
+NeoBundle "rodjek/vim-puppet"
+NeoBundle "scrooloose/Syntastic"
+NeoBundle "sjl/gundo.vim"
+NeoBundle "stephpy/vim-yaml"
+NeoBundle "tfnico/vim-gradle"
+NeoBundle "tomtom/tlib_vim"
+NeoBundle "tpope/vim-classpath"
+NeoBundle "tpope/vim-endwise"
+NeoBundle "tpope/vim-git"
+NeoBundle "tpope/vim-repeat"
+NeoBundle "tpope/vim-salve"
+NeoBundle "tpope/vim-surround"
+NeoBundle "tpope/vim-unimpaired"
+NeoBundle "vim-ruby/vim-ruby"
+NeoBundle "vim-scripts/L9"
+NeoBundle "vim-scripts/Specky"
+NeoBundle "vim-scripts/Tabular"
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+call neobundle#end()
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+syntax on
 
 " Last edited line when reopening
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-if has("autocmd")
-  filetype plugin indent on
 endif
 
 set showcmd		" Show (partial) command in status line.
@@ -23,11 +69,6 @@ set incsearch		" Incremental search
 set autowrite		" Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 set history=1000
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
 
 set shiftwidth=2
 set tabstop=2
@@ -95,9 +136,6 @@ inoremap <Nul> <C-x><C-o>
 set nocompatible               " be iMproved
 
 filetype plugin indent on     " required!
-
-call pathogen#infect()
-call pathogen#helptags()
 
 let g:syntastic_python_checkers=['flake8']
 
