@@ -21,7 +21,7 @@ NeoBundle "ekalinin/Dockerfile.vim"
 NeoBundle "elzr/vim-json"
 NeoBundle "ervandew/supertab"
 NeoBundle "fatih/vim-go"
-NeoBundle "kien/rainbow_parentheses.vim"
+NeoBundle "luochen1990/rainbow"
 NeoBundle "marijnh/tern_for_vim"
 NeoBundle "markcornick/vim-terraform"
 NeoBundle "mhinz/vim-signify"
@@ -150,10 +150,12 @@ set laststatus=2
 
 autocmd BufNewFile,BufRead Packerfile set filetype=json
 
-autocmd VimEnter * RainbowParenthesesToggle
-autocmd Syntax * RainbowParenthesesLoadRound
-autocmd Syntax * RainbowParenthesesLoadSquare
-autocmd Syntax * RainbowParenthesesLoadBraces
+let g:rainbow_active = 1
+
+"autocmd VimEnter * RainbowParenthesesToggle
+"autocmd Syntax * RainbowParenthesesLoadRound
+"autocmd Syntax * RainbowParenthesesLoadSquare
+"autocmd Syntax * RainbowParenthesesLoadBraces
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)

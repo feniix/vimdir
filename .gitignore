@@ -2,3 +2,5 @@
 doc/tags*
 .netrwhist
 viminfo
+
+bundle/.neobundle
