@@ -60,30 +60,56 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-set showcmd   " Show (partial) command in status line.
-set showmatch   " Show matching brackets.
-set ignorecase    " Do case insensitive matching
-set smartcase   " Do smart case matching
-set incsearch   " Incremental search
-set autowrite   " Automatically save before commands like :next and :make
-set hidden             " Hide buffers when they are abandoned
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ~> General
+syntax on
 set history=1000
+set title                                               " vim sets terminal title
 
-set shiftwidth=2
+set undofile                                            " save central undo files
+set undodir=~/.vim/tmp/undo/
+set backup                                              " enable backups
+set backupdir=~/.vim/tmp/backup/
+
+"set ignorecase                                          " Do case insensitive matching
+set smartcase                                           " Do smart case matching
+set incsearch                                           " Incremental search
+set autowrite                                           " Automatically save before commands like :next and :make
+set hidden                                              " Hide buffers when they are abandoned
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ~> Visual Behaviors
+set showcmd                                             " show command in status line
+
+set lazyredraw                                          " redraw a/ macros or registers
+set visualbell                                          " Flash screen not bell
+set showmatch                                           " flash to the matching paren
+set matchtime=2                                         " for 2 seconds (default 5)
+set wrap                                                " Wrap long lines
+set textwidth=80                                        " consider PEP8 by default
+set scrolloff=2                                         " keep 2 lines between cursor and edge
+set formatoptions=qn2                                   " Format comments gq
+                                                        "   reconize numbered lists
+                                                        "   No break lines after 1 letter word
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ~> Tab behaviors
 set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
+set autoindent
+
 set fileformat=unix
 set encoding=utf-8
 set hls
-set autoindent
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 set wildmenu
 set wildmode=list:longest
-set visualbell
 set ttyfast
 set laststatus=2
 
@@ -124,7 +150,6 @@ colorscheme solarized
 let g:vim_json_syntax_conceal=0
 
 let g:airline_powerline_fonts = 1
-set laststatus=2
 
 autocmd BufNewFile,BufRead Packerfile set filetype=json
 
