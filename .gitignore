@@ -4,5 +4,5 @@ doc/tags*
 viminfo
 
 plugged/*
-tmp/backup/*
-tmp/undo/*
+tmp/backup/*~
+tmp/undo/*~
