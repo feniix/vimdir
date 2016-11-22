@@ -4,32 +4,23 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.py --gocode-completer --clang-completer
-  endif
-endfunction
-
 Plug 'Shougo/neocomplete.vim'
-" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'Shougo/neocomplete.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
+Plug 'cespare/vim-toml'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go'
+Plug 'godlygeek/tabular'
 Plug 'luochen1990/rainbow'
 Plug 'marijnh/tern_for_vim'
 Plug 'markcornick/vim-terraform'
+Plug 'metakirby5/codi.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'robbles/logstash.vim'
@@ -46,11 +37,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'vim-jp/vim-go-extra'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/L9'
 Plug 'vim-scripts/Specky'
-Plug 'vim-scripts/Tabular'
-
 call plug#end()
 
 " Required:
@@ -141,6 +131,8 @@ filetype on
 filetype plugin on
 " Auto completion via ctrl-space (instead of the nasty ctrl-x ctrl-o)
 inoremap <Nul> <C-x><C-o>
+
+let g:golang_goroot = "~/otaeguis/golang"
 
 let g:syntastic_python_checkers=['flake8']
 
