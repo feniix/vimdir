@@ -6,43 +6,44 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neocomplete.vim'
 
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
-Plug 'cespare/vim-toml'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'elixir-lang/vim-elixir'
 Plug 'elzr/vim-json'
-Plug 'ervandew/supertab'
 Plug 'fatih/vim-go'
+Plug 'feniix/vim-chef'
 Plug 'godlygeek/tabular'
+Plug 'hashivim/vim-terraform'
 Plug 'luochen1990/rainbow'
 Plug 'marijnh/tern_for_vim'
-Plug 'markcornick/vim-terraform'
-Plug 'metakirby5/codi.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'rhysd/vim-crystal'
 Plug 'robbles/logstash.vim'
 Plug 'rodjek/vim-puppet'
-Plug 'scrooloose/Syntastic'
-Plug 'severin-lemaignan/vim-minimap'
 Plug 'sjl/gundo.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'tfnico/vim-gradle'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-classpath'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-jp/vim-go-extra'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/L9'
 Plug 'vim-scripts/Specky'
+Plug 'vim-syntastic/syntastic'
+
 call plug#end()
+
+let mapleader = ','
 
 " Required:
 filetype plugin indent on
@@ -108,6 +109,28 @@ set laststatus=2
 autocmd FileType json setlocal shiftwidth=2
 autocmd FileType json setlocal tabstop=2
 
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+let g:go_list_type = 'quickfix'
+let g:go_test_timeout = '10s'
+let g:go_fmt_command = 'goimports'
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+
 " Save global variables, those whose names are all uppercase
 " Remember the marks used in the past 1000 edited files
 " Remember 1000 lines of each register between sessions
@@ -133,9 +156,15 @@ filetype plugin on
 " Auto completion via ctrl-space (instead of the nasty ctrl-x ctrl-o)
 inoremap <Nul> <C-x><C-o>
 
-let g:golang_goroot = "~/otaeguis/golang"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 let g:syntastic_python_checkers=['flake8']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 let g:solarized_termcolors=256
 set background=dark
@@ -155,6 +184,12 @@ call matchadd('ColorColumn', '\%81v', 100)
 set backspace=indent,eol,start
 
 nnoremap <F5> :GundoToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""
+" Terraform settings
+let g:terraform_align=1
+autocmd FileType terraform setlocal commentstring=#%s
+"""""""""""""""""""""""""""""""""""""""""""
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
