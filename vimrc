@@ -4,7 +4,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-"Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neocomplete.vim'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -190,6 +190,8 @@ nnoremap <F5> :GundoToggle<CR>
 let g:terraform_align=1
 autocmd FileType terraform setlocal commentstring=#%s
 """""""""""""""""""""""""""""""""""""""""""
+
+let g:loaded_syntastic_chef_foodcritic_checker = 0
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
