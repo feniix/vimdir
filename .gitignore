@@ -6,3 +6,5 @@ viminfo
 plugged/*
 tmp/backup/*~
 tmp/undo/*~
+autoload/
+ftplugin/

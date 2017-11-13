@@ -20,6 +20,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'luochen1990/rainbow'
 Plug 'marijnh/tern_for_vim'
 Plug 'mhinz/vim-signify'
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'rhysd/vim-crystal'
 Plug 'robbles/logstash.vim'
