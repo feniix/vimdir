@@ -25,6 +25,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'rhysd/vim-crystal'
 Plug 'robbles/logstash.vim'
 Plug 'rodjek/vim-puppet'
+Plug 'rust-lang/rust.vim'
 Plug 'sjl/gundo.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'tfnico/vim-gradle'
@@ -216,6 +217,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " AutoComplPop like behavior.
 "let g:neocomplete#enable_auto_select = 1
+let g:rustfmt_autosave = 1
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
