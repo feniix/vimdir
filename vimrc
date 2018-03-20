@@ -10,6 +10,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
+Plug 'cespare/vim-toml'
+Plug 'maralla/vim-toml-enhance'
+Plug 'pearofducks/ansible-vim', { 'branch': 'v2' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
@@ -20,8 +23,10 @@ Plug 'hashivim/vim-terraform'
 Plug 'luochen1990/rainbow'
 Plug 'marijnh/tern_for_vim'
 Plug 'mhinz/vim-signify'
+Plug 'nathanielc/vim-tickscript'
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'racer-rust/vim-racer'
 Plug 'rhysd/vim-crystal'
 Plug 'robbles/logstash.vim'
 Plug 'rodjek/vim-puppet'
@@ -29,6 +34,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'sjl/gundo.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'tfnico/vim-gradle'
+Plug 'timonv/vim-cargo'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-commentary'
@@ -218,6 +224,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " AutoComplPop like behavior.
 "let g:neocomplete#enable_auto_select = 1
 let g:rustfmt_autosave = 1
+let g:racer_experimental_completer = 1
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
