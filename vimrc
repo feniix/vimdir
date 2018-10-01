@@ -13,6 +13,7 @@ Plug 'bling/vim-airline'
 Plug 'cespare/vim-toml'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'elixir-editors/vim-elixir'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'feniix/vim-chef'
@@ -21,6 +22,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'luochen1990/rainbow'
 Plug 'maralla/vim-toml-enhance'
 Plug 'marijnh/tern_for_vim'
+Plug 'mhinz/vim-mix-format'
 Plug 'mhinz/vim-signify'
 Plug 'nathanielc/vim-tickscript'
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
@@ -226,6 +228,9 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 "let g:neocomplete#enable_auto_select = 1
 let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
+
+let g:mix_format_on_save = 1
+
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
