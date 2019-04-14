@@ -4,7 +4,27 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'wokalski/autocomplete-flow'
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+let g:deoplete#enable_at_startup = 1
+let g:neosnippet#enable_completed_snippet = 1
+
+" typescript
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'Quramy/vim-dtsm'
+Plug 'Quramy/vim-js-pretty-template'
+Plug 'jason0x43/vim-js-indent'
+Plug 'leafgarland/typescript-vim'
+Plug 'mhartington/vim-typings'
+
+" kotlin
+Plug 'udalov/kotlin-vim'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -21,7 +41,7 @@ Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'luochen1990/rainbow'
 Plug 'maralla/vim-toml-enhance'
-Plug 'marijnh/tern_for_vim'
+Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 Plug 'mhinz/vim-mix-format'
 Plug 'mhinz/vim-signify'
 Plug 'nathanielc/vim-tickscript'
@@ -108,6 +128,7 @@ set autoindent
 set fileformat=unix
 set encoding=utf-8
 set hls
+set pyxversion=3
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -204,10 +225,6 @@ autocmd FileType terraform setlocal commentstring=#%s
 
 let g:loaded_syntastic_chef_foodcritic_checker = 0
 
-"let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -218,9 +235,6 @@ function! s:my_cr_function()
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
@@ -230,10 +244,4 @@ let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
 
 let g:mix_format_on_save = 1
-
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
 
