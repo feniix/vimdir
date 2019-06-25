@@ -219,7 +219,7 @@ nnoremap <F5> :GundoToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""
 " Terraform settings
-let g:terraform_align=1
+let g:terraform_align=0
 autocmd FileType terraform setlocal commentstring=#%s
 """""""""""""""""""""""""""""""""""""""""""
 
