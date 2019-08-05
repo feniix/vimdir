@@ -26,37 +26,36 @@ Plug 'mhartington/vim-typings'
 " kotlin
 Plug 'udalov/kotlin-vim'
 
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
+" golang
+"Plug 'fatih/vim-go'
+Plug 'myitcv/govim'
+"Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
+
 Plug 'cespare/vim-toml'
+Plug 'maralla/vim-toml-enhance'
+
+Plug 'MarcWeber/vim-addon-mw-utils'
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'elixir-editors/vim-elixir'
 Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
 Plug 'feniix/vim-chef'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'luochen1990/rainbow'
-Plug 'maralla/vim-toml-enhance'
-Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
-Plug 'mhinz/vim-mix-format'
 Plug 'mhinz/vim-signify'
 Plug 'nathanielc/vim-tickscript'
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'pearofducks/ansible-vim', { 'branch': 'v2' }
-Plug 'racer-rust/vim-racer'
-Plug 'rhysd/vim-crystal'
+
+Plug 'pearofducks/ansible-vim'
 Plug 'robbles/logstash.vim'
 Plug 'rodjek/vim-puppet'
-Plug 'rust-lang/rust.vim'
 Plug 'sjl/gundo.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'tfnico/vim-gradle'
-Plug 'timonv/vim-cargo'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-commentary'
@@ -207,6 +206,7 @@ let g:vim_json_syntax_conceal=0
 let g:airline_powerline_fonts = 1
 
 autocmd BufNewFile,BufRead Packerfile set filetype=json
+autocmd BufNewFile,BufRead *.hcl set filetype=terraform
 
 let g:rainbow_active = 1
 
