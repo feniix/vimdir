@@ -50,6 +50,7 @@ Plug 'mhinz/vim-signify'
 Plug 'nathanielc/vim-tickscript'
 Plug 'ntpeters/vim-better-whitespace'
 
+Plug 'dense-analysis/ale'
 Plug 'pearofducks/ansible-vim'
 Plug 'robbles/logstash.vim'
 Plug 'rodjek/vim-puppet'
