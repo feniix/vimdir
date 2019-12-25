@@ -4,15 +4,46 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" generic / libraries
+Plug 'vim-scripts/L9'
+
+" colors and look and feel
+Plug 'altercation/vim-colors-solarized'
+Plug 'bling/vim-airline'
+
+" syntax highlight
+Plug 'vim-syntastic/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:loaded_syntastic_chef_foodcritic_checker = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers=['flake8']
+
+" Asynchronous Lint Engine https://github.com/dense-analysis/ale
+Plug 'dense-analysis/ale'
+
+" adds closing char or word for some languages
+Plug 'tpope/vim-endwise'
+
+" pretty icons for filetypes
+Plug 'ryanoasis/vim-devicons'
+
+" deooplete autocomplete
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'wokalski/autocomplete-flow'
+let g:deoplete#enable_at_startup = 1
+" end deoplete
+
 " For func argument completion
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
+" end rgument completion
 
 " typescript
 Plug 'HerringtonDarkholme/yats.vim'
@@ -26,51 +57,58 @@ Plug 'mhartington/vim-typings'
 " kotlin
 Plug 'udalov/kotlin-vim'
 
+" Tag sidebar
+Plug 'majutsushi/tagbar'
+
 " golang
-"Plug 'fatih/vim-go'
-Plug 'myitcv/govim'
-"Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'govim/govim'
 
-Plug 'altercation/vim-colors-solarized'
-Plug 'bling/vim-airline'
-
-Plug 'cespare/vim-toml'
-Plug 'maralla/vim-toml-enhance'
-
-Plug 'MarcWeber/vim-addon-mw-utils'
-
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'elzr/vim-json'
-Plug 'feniix/vim-chef'
-Plug 'godlygeek/tabular'
+" basic vim/terraform integration
 Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
+let g:terraform_align=0
+" (Optional) Enable terraform plan to be include in filter
+let g:syntastic_terraform_tffilter_plan = 1
+" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
+let g:terraform_completion_keys = 1
+" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
+let g:terraform_registry_module_completion = 0
+autocmd FileType terraform setlocal commentstring=#%s
+autocmd BufNewFile,BufRead *.hcl set filetype=terraform
+
+Plug 'ekalinin/Dockerfile.vim'
+
+" json syntax highlight
+Plug 'elzr/vim-json'
+
+" Rainbow Parentheses Improved
 Plug 'luochen1990/rainbow'
-Plug 'mhinz/vim-signify'
-Plug 'nathanielc/vim-tickscript'
+
+" vim git diff + and -
+Plug 'airblade/vim-gitgutter'
+
+" causes all trailing whitespace characters to be highlighted
 Plug 'ntpeters/vim-better-whitespace'
 
-Plug 'dense-analysis/ale'
-Plug 'pearofducks/ansible-vim'
-Plug 'robbles/logstash.vim'
-Plug 'rodjek/vim-puppet'
-Plug 'sjl/gundo.vim'
-Plug 'stephpy/vim-yaml'
-Plug 'tfnico/vim-gradle'
-Plug 'tomtom/tlib_vim'
-Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-salve'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
+" Syntax plugin for Ansible 2.x, it supports YAML playbooks, Jinja2 templates, and Ansible's hosts files.
+Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
+let g:ansible_unindent_after_newline = 1
+
+" ruby lang support
 Plug 'vim-ruby/vim-ruby'
-Plug 'vim-scripts/L9'
-Plug 'vim-scripts/Specky'
-Plug 'vim-scripts/bats.vim'
-Plug 'vim-syntastic/syntastic'
+
+" puppet support
+Plug 'rodjek/vim-puppet'
+
+" better yaml support
+Plug 'stephpy/vim-yaml'
+
+" gradle support
+" Plug 'tfnico/vim-gradle'
+Plug 'hdiniz/vim-gradle'
+
+" toml support
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
@@ -92,7 +130,8 @@ set title                                               " vim sets terminal titl
 
 set undofile                                            " save central undo files
 set undodir=~/.vim/tmp/undo/
-set backup                                              " enable backups
+set nobackup                                              " enable backups
+set nowritebackup
 set backupdir=~/.vim/tmp/backup/
 
 "set ignorecase                                          " Do case insensitive matching
@@ -188,16 +227,6 @@ filetype plugin on
 " Auto completion via ctrl-space (instead of the nasty ctrl-x ctrl-o)
 inoremap <Nul> <C-x><C-o>
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
@@ -207,7 +236,6 @@ let g:vim_json_syntax_conceal=0
 let g:airline_powerline_fonts = 1
 
 autocmd BufNewFile,BufRead Packerfile set filetype=json
-autocmd BufNewFile,BufRead *.hcl set filetype=terraform
 
 let g:rainbow_active = 1
 
@@ -220,11 +248,7 @@ nnoremap <F5> :GundoToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""
 " Terraform settings
-let g:terraform_align=0
-autocmd FileType terraform setlocal commentstring=#%s
 """""""""""""""""""""""""""""""""""""""""""
-
-let g:loaded_syntastic_chef_foodcritic_checker = 0
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -245,4 +269,13 @@ let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
 
 let g:mix_format_on_save = 1
+
+let g:deoplete#omni_patterns = {}
+
+call deoplete#custom#option('omni_patterns', {
+\ 'complete_method': 'omnifunc',
+\ 'terraform': '[^ *\t"{=$]\w*',
+\})
+
+call deoplete#initialize()
 
