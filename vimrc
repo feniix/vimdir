@@ -33,10 +33,14 @@ Plug 'tpope/vim-endwise'
 Plug 'ryanoasis/vim-devicons'
 
 " deooplete autocomplete
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-let g:deoplete#enable_at_startup = 1
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"let g:deoplete#enable_at_startup = 1
 " end deoplete
 
 " For func argument completion
@@ -61,7 +65,7 @@ Plug 'udalov/kotlin-vim'
 Plug 'majutsushi/tagbar'
 
 " golang
-Plug 'govim/govim'
+"Plug 'govim/govim'
 
 " basic vim/terraform integration
 Plug 'hashivim/vim-terraform'
@@ -270,12 +274,12 @@ let g:racer_experimental_completer = 1
 
 let g:mix_format_on_save = 1
 
-let g:deoplete#omni_patterns = {}
-
-call deoplete#custom#option('omni_patterns', {
-\ 'complete_method': 'omnifunc',
-\ 'terraform': '[^ *\t"{=$]\w*',
-\})
-
-call deoplete#initialize()
+"let g:deoplete#omni_patterns = {}
+"
+"call deoplete#custom#option('omni_patterns', {
+"\ 'complete_method': 'omnifunc',
+"\ 'terraform': '[^ *\t"{=$]\w*',
+"\})
+"
+"call deoplete#initialize()
 
