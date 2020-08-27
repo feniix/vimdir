@@ -33,14 +33,14 @@ Plug 'tpope/vim-endwise'
 Plug 'ryanoasis/vim-devicons'
 
 " deooplete autocomplete
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"let g:deoplete#enable_at_startup = 1
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 " end deoplete
 
 " For func argument completion
@@ -113,6 +113,10 @@ Plug 'hdiniz/vim-gradle'
 
 " toml support
 Plug 'cespare/vim-toml'
+
+" regex with live preview
+"Plug 'markonm/traces.vim'
+"Plug 'osyo-manga/vim-over'
 
 call plug#end()
 
