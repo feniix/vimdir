@@ -64,9 +64,6 @@ Plug 'udalov/kotlin-vim'
 " Tag sidebar
 Plug 'majutsushi/tagbar'
 
-" golang
-"Plug 'govim/govim'
-
 " basic vim/terraform integration
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
@@ -108,19 +105,25 @@ Plug 'rodjek/vim-puppet'
 Plug 'stephpy/vim-yaml'
 
 " gradle support
-" Plug 'tfnico/vim-gradle'
 Plug 'hdiniz/vim-gradle'
 
 " toml support
 Plug 'cespare/vim-toml'
 
+" golang
+Plug 'fatih/vim-go'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'SirVer/ultisnips'
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Plug 'tfnico/vim-gradle'
 " regex with live preview
 "Plug 'markonm/traces.vim'
 "Plug 'osyo-manga/vim-over'
 
 call plug#end()
 
-let mapleader = ','
+let mapleader = ","
 
 " Required:
 filetype plugin indent on
@@ -130,60 +133,79 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ~> General
-syntax on
-set history=1000
-set title                                               " vim sets terminal title
-
-set undofile                                            " save central undo files
-set undodir=~/.vim/tmp/undo/
-set nobackup                                              " enable backups
-set nowritebackup
+set autoindent                  " Enabile Autoindent
+set autoread                    " Automatically read changed files
+set autowrite                   " Automatically save before :next, :make etc.
+set backspace=indent,eol,start  " Makes backspace key more powerful.
 set backupdir=~/.vim/tmp/backup/
-
-"set ignorecase                                          " Do case insensitive matching
-set smartcase                                           " Do smart case matching
-set incsearch                                           " Incremental search
-set autowrite                                           " Automatically save before commands like :next and :make
-set hidden                                              " Hide buffers when they are abandoned
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ~> Visual Behaviors
-set showcmd                                             " show command in status line
-
-set lazyredraw                                          " redraw a/ macros or registers
-set visualbell                                          " Flash screen not bell
-set showmatch                                           " flash to the matching paren
-set matchtime=2                                         " for 2 seconds (default 5)
-set wrap                                                " Wrap long lines
-set textwidth=80                                        " consider PEP8 by default
-set scrolloff=2                                         " keep 2 lines between cursor and edge
-set formatoptions=qn2                                   " Format comments gq
-                                                        "   reconize numbered lists
-                                                        "   No break lines after 1 letter word
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ~> Tab behaviors
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set completeopt=menu,menuone    " Show popup menu, even if there is one entry
+set encoding=utf-8              " Set default encoding to UTF-8
 set expandtab
-set smarttab
-set autoindent
-
-set fileformat=unix
-set encoding=utf-8
+set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
+set formatoptions=qn2           " Format comments gq
+set hidden                      " Buffer should still exist if window is closed
+set history=1000
 set hls
+set hlsearch                    " Highlight found searches
+set ignorecase                  " Search case insensitive...
+set incsearch                   " Shows the match while typing
+set laststatus=2                " Show status line always
+set lazyredraw                  " Wait to redraw
+set matchtime=2                 " for 2 seconds (default 5)
+set nobackup                    " Don't create annoying backup files
+set nocompatible                " Enables us Vim specific features
+set nocursorcolumn              " Do not highlight column (speeds up highlighting)
+set nocursorline                " Do not highlight cursor (speeds up highlighting)
+set noerrorbells                " No beeps
+set noshowmatch                 " Do not show matching brackets by flickering
+set noshowmode                  " We show the mode with airline or lightline
+set noswapfile                  " Don't use swapfile
+set nowritebackup
+set number                      " Show line numbers
+set pumheight=10                " Completion window max size
 set pyxversion=3
+set scrolloff=2                 " keep 2 lines between cursor and edge
+set shiftwidth=2
+set showcmd                     " Show me what I'm typing
+set showmatch                   " flash to the matching paren
+set showmode
+set smartcase                   " ... but not it begins with upper case
+set smarttab
+set softtabstop=2
+set splitbelow                  " Horizontal windows should split to bottom
+set splitright                  " Vertical windows should be split to right
+set tabstop=2
+set textwidth=80                " consider PEP8 by default
+set title                       " vim sets terminal title
+set ttyfast                     " Indicate fast terminal conn for faster redraw
+set ttymouse=xterm2             " Indicate terminal type for mouse codes
+set ttyscroll=3                 " Speedup scrolling
+set visualbell                  " Flash screen not bell
+set wildmenu
+set wildmode=list:longest
+set wrap                        " Wrap long lines
+
+" Enable to copy to clipboard for operations like yank, delete, change and put
+" http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
+if has('unnamedplus')
+  set clipboard^=unnamed
+  set clipboard^=unnamedplus
+endif
+
+" This enables us to undo files even if you exit Vim.
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.config/vim/tmp/undo//
+endif
+
+syntax on
+
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
-set showmode
-set wildmenu
-set wildmode=list:longest
-set ttyfast
-set laststatus=2
+
+filetype off                    " Reset filetype detection first ...
+filetype plugin indent on       " ... and enable filetype detection
 
 autocmd FileType json setlocal shiftwidth=2
 autocmd FileType json setlocal tabstop=2
@@ -253,6 +275,74 @@ call matchadd('ColorColumn', '\%81v', 100)
 set backspace=indent,eol,start
 
 nnoremap <F5> :GundoToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""
+" Go settings
+"""""""""""""""""""""""""""""""""""""""""""
+let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
+
+" Open :GoDeclsDir with ctrl-g
+nmap <C-g> :GoDeclsDir<cr>
+imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+
+augroup go
+  autocmd!
+
+  " Show by default 4 spaces for a tab
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+  " :GoBuild and :GoTestCompile
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+  " :GoTest
+  autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+  " :GoRun
+  autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+  " :GoDoc
+  autocmd FileType go nmap <Leader>d <Plug>(go-doc)
+
+  " :GoCoverageToggle
+  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+  " :GoInfo
+  autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+  " :GoMetaLinter
+  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+
+  " :GoDef but opens in a vertical split
+  autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
+  " :GoDef but opens in a horizontal split
+  autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+
+  " :GoAlternate  commands :A, :AV, :AS and :AT
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
+
+" build_go_files is a custom function that builds or compiles the test file.
+" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""
 " Terraform settings
