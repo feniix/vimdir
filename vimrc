@@ -2,6 +2,10 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
+let g:python3_host_prog = '/usr/local/Cellar/python@3.9/3.9.6/bin/python3'
+" disable python 2
+let g:loaded_python_provider = 0
+
 call plug#begin('~/.vim/plugged')
 
 " generic / libraries
@@ -179,8 +183,10 @@ set tabstop=2
 set textwidth=80                " consider PEP8 by default
 set title                       " vim sets terminal title
 set ttyfast                     " Indicate fast terminal conn for faster redraw
-set ttymouse=xterm2             " Indicate terminal type for mouse codes
-set ttyscroll=3                 " Speedup scrolling
+if !has('nvim')
+  set ttymouse=xterm2             " Indicate terminal type for mouse codes
+  set ttyscroll=3                 " Speedup scrolling
+endif
 set visualbell                  " Flash screen not bell
 set wildmenu
 set wildmode=list:longest
@@ -193,14 +199,17 @@ if has('unnamedplus')
   set clipboard^=unnamedplus
 endif
 
-" This enables us to undo files even if you exit Vim.
-if has('persistent_undo')
-  set undofile
-  set undodir=~/.config/vim/tmp/undo//
+" use separate undo files for neovim and vim
+if !has('nvim')
+  " This enables us to undo files even if you exit Vim.
+  set undodir=$HOME/.vim/tmp/undo     "directory where the undo files will be stored
+  set undofile                    "turn on the feature
+else
+  set undodir=$HOME/.local/share/nvim/tmp/undo     "directory where the undo files will be stored
+  set undofile                    "turn on the feature
 endif
 
 syntax on
-
 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -238,7 +247,9 @@ let g:go_highlight_methods = 1
 " Remember 1000 lines of each register between sessions
 " Don’t highlight the last search when starting a new session
 " Store the file as ~/.vim/viminfo
-set viminfo=!,'1000,<1000,h,n~/.vim/viminfo
+if !has('nvim')
+  set viminfo=!,'1000,<1000,h,n~/.vim/viminfo
+endif
 
 if &encoding == "utf-8"
   set listchars=tab:▸\ ,trail:.,eol:¬
