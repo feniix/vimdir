@@ -2,7 +2,7 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-let g:python3_host_prog = '/usr/local/Cellar/python@3.9/3.9.6/bin/python3'
+let g:python3_host_prog = '/usr/local/opt/python@3.9/bin/python3.9'
 " disable python 2
 let g:loaded_python_provider = 0
 
@@ -37,20 +37,28 @@ Plug 'tpope/vim-endwise'
 Plug 'ryanoasis/vim-devicons'
 
 " deooplete autocomplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"let g:deoplete#enable_at_startup = 1
 " end deoplete
 
+if has('nvim')
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/completion-treesitter'
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+endif
+
 " For func argument completion
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-let g:neosnippet#enable_completed_snippet = 1
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
+" let g:neosnippet#enable_completed_snippet = 1
 " end rgument completion
 
 " typescript
@@ -97,8 +105,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ntpeters/vim-better-whitespace'
 
 " Syntax plugin for Ansible 2.x, it supports YAML playbooks, Jinja2 templates, and Ansible's hosts files.
-Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
-let g:ansible_unindent_after_newline = 1
+"Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
+"let g:ansible_unindent_after_newline = 1
 
 " ruby lang support
 Plug 'vim-ruby/vim-ruby'
@@ -116,7 +124,7 @@ Plug 'hdiniz/vim-gradle'
 Plug 'cespare/vim-toml'
 
 " golang
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -267,7 +275,7 @@ endif
 filetype on
 filetype plugin on
 " Auto completion via ctrl-space (instead of the nasty ctrl-x ctrl-o)
-inoremap <Nul> <C-x><C-o>
+" inoremap <Nul> <C-x><C-o>
 
 let g:solarized_termcolors=256
 set background=dark
@@ -362,16 +370,16 @@ endfunction
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+"  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+"  " For no inserting <CR> key.
+"  "return pumvisible() ? "\<C-y>" : "\<CR>"
+"endfunction
+"" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"" Close popup by <Space>.
+""inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 " AutoComplPop like behavior.
 "let g:neocomplete#enable_auto_select = 1
@@ -379,6 +387,9 @@ let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
 
 let g:mix_format_on_save = 1
+
+" <TAB>: completion.
+"inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "let g:deoplete#omni_patterns = {}
 "

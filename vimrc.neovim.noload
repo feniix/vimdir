@@ -1,0 +1,26 @@
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+let g:python3_host_prog = '/usr/local/Cellar/python@3.9/3.9.7/bin/python3'
+" disable python 2
+let g:loaded_python_provider = 0
+
+call plug#begin('~/.vim/plugged')
+
+if has('nvim')
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/completion-treesitter'
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
+endif
+"
+" causes all trailing whitespace characters to be highlighted
+Plug 'ntpeters/vim-better-whitespace'
+
+call plug#end()
+
+" map leader to ','
+let mapleader = ","
+
