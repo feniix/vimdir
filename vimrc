@@ -2,7 +2,8 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-let g:python3_host_prog = '/usr/local/opt/python@3.9/bin/python3.9'
+let g:python3_host_prog = '/opt/homebrew/opt/python@3.10/bin/python3.10'
+
 " disable python 2
 let g:loaded_python_provider = 0
 
