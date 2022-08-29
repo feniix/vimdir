@@ -16,6 +16,9 @@ Plug 'vim-scripts/L9'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 
+" jsonnet
+Plug 'google/vim-jsonnet'
+
 " syntax highlight
 Plug 'vim-syntastic/syntastic'
 set statusline+=%#warningmsg#
