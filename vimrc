@@ -16,6 +16,8 @@ Plug 'vim-scripts/L9'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 
+Plug 'folke/todo-comments.nvim'
+
 " jsonnet
 Plug 'google/vim-jsonnet'
 
@@ -40,17 +42,6 @@ Plug 'tpope/vim-endwise'
 " pretty icons for filetypes
 Plug 'ryanoasis/vim-devicons'
 
-" deooplete autocomplete
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"let g:deoplete#enable_at_startup = 1
-" end deoplete
-
 if has('nvim')
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -58,12 +49,6 @@ Plug 'nvim-treesitter/completion-treesitter'
 " Use completion-nvim in every buffer
 autocmd BufEnter * lua require'completion'.on_attach()
 endif
-
-" For func argument completion
-" Plug 'Shougo/neosnippet'
-" Plug 'Shougo/neosnippet-snippets'
-" let g:neosnippet#enable_completed_snippet = 1
-" end rgument completion
 
 " typescript
 Plug 'HerringtonDarkholme/yats.vim'
@@ -108,10 +93,6 @@ Plug 'airblade/vim-gitgutter'
 " causes all trailing whitespace characters to be highlighted
 Plug 'ntpeters/vim-better-whitespace'
 
-" Syntax plugin for Ansible 2.x, it supports YAML playbooks, Jinja2 templates, and Ansible's hosts files.
-"Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
-"let g:ansible_unindent_after_newline = 1
-
 " ruby lang support
 Plug 'vim-ruby/vim-ruby'
 
@@ -133,20 +114,15 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ctrlpvim/ctrlp.vim'
 
-" Plug 'tfnico/vim-gradle'
-" regex with live preview
-"Plug 'markonm/traces.vim'
-"Plug 'osyo-manga/vim-over'
-
 call plug#end()
 
-let mapleader = ","
+let mapleader = ','
 
 " Required:
 filetype plugin indent on
 
 " Last edited line when reopening
-if has("autocmd")
+if has('autocmd')
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
@@ -263,7 +239,7 @@ if !has('nvim')
   set viminfo=!,'1000,<1000,h,n~/.vim/viminfo
 endif
 
-if &encoding == "utf-8"
+if &encoding == 'utf-8'
   set listchars=tab:▸\ ,trail:.,eol:¬
 else
   set listchars=tab:>\ ,trail:.,eol:-
@@ -272,7 +248,7 @@ nmap <leader>l :set list!<CR>
 nmap <leader>n :setlocal number!<CR>
 nmap <leader>q :nohlsearch<CR>
 
-if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+if $TERM == 'xterm-256color' || $TERM == 'screen-256color' || $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
 
@@ -303,9 +279,9 @@ nnoremap <F5> :GundoToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""
 " Go settings
 """""""""""""""""""""""""""""""""""""""""""
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = 'goimports'
 let g:go_autodetect_gopath = 1
-let g:go_list_type = "quickfix"
+let g:go_list_type = 'quickfix'
 
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -313,6 +289,9 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 " Open :GoDeclsDir with ctrl-g
 nmap <C-g> :GoDeclsDir<cr>
@@ -368,22 +347,6 @@ function! s:build_go_files()
   endif
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""
-" Terraform settings
-"""""""""""""""""""""""""""""""""""""""""""
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-"  " For no inserting <CR> key.
-"  "return pumvisible() ? "\<C-y>" : "\<CR>"
-"endfunction
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" Close popup by <Space>.
-""inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 " AutoComplPop like behavior.
 "let g:neocomplete#enable_auto_select = 1
@@ -391,16 +354,3 @@ let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
 
 let g:mix_format_on_save = 1
-
-" <TAB>: completion.
-"inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-"let g:deoplete#omni_patterns = {}
-"
-"call deoplete#custom#option('omni_patterns', {
-"\ 'complete_method': 'omnifunc',
-"\ 'terraform': '[^ *\t"{=$]\w*',
-"\})
-"
-"call deoplete#initialize()
-
